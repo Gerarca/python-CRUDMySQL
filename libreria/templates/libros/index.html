@@ -1,0 +1,48 @@
+{% extends "base.html" %} 
+
+{% block titulo %} Lista de Libros {% endblock %}
+
+{% block contenido %} 
+    <div class="card mt-5">
+        <div class="card-header d-flex flex-row-reverse">
+            <a name="" id="" class="btn btn-primary" href="{% url 'agregar' %}" role="button">Agregar</a>
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">Libros</h4>
+            
+            <div class="table-responsive">
+                <table class="table table-primary">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Titulo</th>
+                            <th scope="col">Imagen</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for libro in libros %}
+                        <tr>
+                            <td scope="row">{{libro.id }}</td>
+                            <td>{{libro.titulo }}</td>
+                            <td>
+                                <img src={{ libro.imagen.url }} class="img-fluid" width="100" alt="{{ libro.titulo }}">                               
+                            </td>
+                            <td>{{libro.descripcion }}</td>
+                            <td>
+                                <div class="grid gap-3">
+                                    <a name="editar" id="" class="btn btn-info" href="{% url 'editar' libro.id %}" role="button">Editar</a>
+                                    <a name="eliminar" id="" class="btn btn-danger" href="{% url 'eliminar' libro.id %}" role="button">Eliminar</a>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            
+
+        </div>
+    </div>
+{% endblock %}
